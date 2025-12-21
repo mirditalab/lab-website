@@ -1,1 +1,645 @@
-index.html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mirdita Lab | Molecular Bioinformatics &amp; Machine Learning</title>
+    <link rel="stylesheet" href="static/all.min.css" />
+    <link rel="stylesheet" href="static/academicons.min.css" />
+    <link rel="stylesheet" href="static/fonts.css" />
+    <link rel="stylesheet" href="static/leaflet.css" />
+    <link rel="stylesheet" href="static/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="brand">
+          <span class="lab-name">Mirdita Lab</span>
+          <span class="tagline">Molecular Bioinformatics <span class="fancy-amp">&amp;</span> Machine Learning</span>
+        </div>
+        <nav>
+          <a href="#team">Team</a>
+          <a href="#software">Software</a>
+          <a href="#publications">Publications</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-layout">
+          <div class="hero-content">
+            <h1>Molecular Bioinformatics&nbsp;<span class="fancy-amp">&amp;</span> Machine&nbsp;Learning</h1>
+            <p>
+              We bridge algorithms and usable software to map evolution, decode protein
+              function, and annotate the unknown at scale.
+            </p>
+            <div class="cta-group">
+              <a class="secondary" href="#software">Explore software</a>
+              <a class="secondary" href="#publications">Read papers</a>
+              <a class="cta" href="#team">Join the team</a>
+            </div>
+          </div>
+          <div class="hero-extra" aria-hidden="true">
+            <div
+              class="structure-viewer"
+              data-structure-src="static/AF-Q8W3K0-F1-model_v6.pdb"
+              data-structure-status=""
+              data-structure-viewer
+            >
+              <div class="structure-viewer__canvas-target" data-structure-target></div>
+              <a
+                class="structure-viewer__link"
+                href="https://alphafold.ebi.ac.uk/entry/Q8W3K0"
+                target="_blank"
+                rel="noopener"
+                aria-label="View AlphaFold entry Q8W3K0"
+              >
+                Q8W3K0
+              </a>
+              <span class="structure-viewer__status"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="pi" class="section muted compact">
+        <div class="container pi-layout">
+          <div class="pi-summary">
+            <div class="pi-avatar">
+              <img src="static/avatar_mm.jpg" alt="Dr. Milot Mirdita" />
+            </div>
+            <p class="pi-name">Milot Mirdita</p>
+            <p class="pi-role">Assistant Professor at SKKU</p>
+            <div class="pi-links">
+              <a href="mailto:milot@mirdita.org" aria-label="Email" target="_blank" rel="noopener"><i class="fas fa-envelope big-icon"></i></a>
+              <a href="https://bsky.app/profile/milot.bsky.social" aria-label="Follow on Bluesky" target="_blank" rel="noopener"><i class="fab fa-bluesky big-icon"></i></a>
+              <a href="https://scholar.google.com/citations?user=jaTEO_QAAAAJ" aria-label="Google Scholar profile" target="_blank" rel="noopener"><i class="fas fa-graduation-cap big-icon"></i></a>
+              <a href="https://github.com/milot-mirdita" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github big-icon"></i></a>
+              <a href="https://orcid.org/0000-0001-8637-6719" aria-label="ORCID" target="_blank" rel="noopener"><i class="ai ai-orcid big-icon"></i></a>
+              <a href="/static/CV.pdf" aria-label="Curriculum Vitae" target="_blank" rel="noopener"><i class="ai ai-cv big-icon"></i></a>
+            </div>
+          </div>
+          <div class="pi-copy">
+            <p>
+              Milot Mirdita is an Assistant Professor at <a href="https://skku.edu">SKKU</a> in Suwon. His research focuses on scalable,
+              open bioinformatics infrastructure for metagenomic analysis, high-throughput homology search,
+              clustering, taxonomy, and structure prediction.
+            </p>
+            <p>
+              He previously worked with <a href="https://steineggerlab.com">Prof. Dr. Martin Steinegger</a> and <a href="https://www.mpinat.mpg.de/soeding">Dr. Johannes Söding</a> to create widely
+              used methods for sequence alignment and annotation. Milot trained at the Max-Planck Institute
+              for Multidisciplinary Sciences (Dr. rer. nat.), LMU Munich (M.Sc. Computer Science), and LMU/TUM
+              (B.Sc. Bioinformatics).
+            </p>
+            <div class="pi-video">
+              <div class="video-frame">
+                <iframe
+                  src="https://www.youtube.com/embed/S7I8MEPnlG4?si=m38-0w777f8n3G2t"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="team" class="section compact">
+        <div class="container">
+          <h2>Team</h2>
+          <p>
+            We are hiring at all levels (lab manager, interns, graduate students, postdocs, and research software engineers) excited for
+            large-scale data processing, HPC/GPU programming, machiene learning or open-source scientific software. Send a short
+            introduction and CV to <a href="mailto:milot@mirdita.org">milot@mirdita.org</a>.
+          </p>
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-avatar" aria-hidden="true">MM</div>
+              <p class="team-name">Milot Mirdita</p>
+              <p class="team-title">Assistant Professor</p>
+            </div>
+            <div class="team-card placeholder">
+              <div class="team-avatar placeholder" aria-hidden="true">+</div>
+              <p class="team-name">You?</p>
+              <p class="team-title">Join us</p>
+            </div>
+            <div class="team-card placeholder">
+              <div class="team-avatar placeholder" aria-hidden="true">+</div>
+              <p class="team-name">You?</p>
+              <p class="team-title">Join us</p>
+            </div>
+            <div class="team-card placeholder">
+              <div class="team-avatar placeholder" aria-hidden="true">+</div>
+              <p class="team-name">You?</p>
+              <p class="team-title">Join us</p>
+            </div>
+            <div class="team-card placeholder">
+              <div class="team-avatar placeholder" aria-hidden="true">+</div>
+              <p class="team-name">You?</p>
+              <p class="team-title">Join us</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="software" class="section muted compact">
+        <div class="container">
+          <h2>Software</h2>
+          <div class="software-grid">
+            <article class="software-card">
+              <img src="static/ColabFold_Marv_Logo_Small.png" alt="ColabFold logo" />
+              <div>
+                <h3>ColabFold</h3>
+                <p>
+                  Easy and accurate AlphaFold2 inference in the browser, maintained together with the <a href="https://steineggerlab.com">Steinegger Lab (SNU)</a>, <a href="https://solab.org">Solab (MIT)</a>
+                  and open-source contributors.
+                </p>
+                <a class="secondary" href="https://colabfold.com" target="_blank" rel="noopener">Open ColabFold &rarr;</a>
+              </div>
+            </article>
+            <article class="software-card">
+              <img src="static/foldseek.png" alt="Foldseek logo" />
+              <div>
+                <h3>Foldseek Server</h3>
+                <p>
+                  Structure search that lets researchers query massive protein databases for homologous folds in seconds.
+                </p>
+                <a class="secondary" href="https://search.foldseek.com" target="_blank" rel="noopener">Visit Foldseek Server &rarr;</a>
+              </div>
+            </article>
+            <article class="software-card">
+              <img src="static/mmseqs.png" alt="MMseqs2-GPU logo" />
+              <div>
+                <h3>MMseqs2-GPU</h3>
+                <p>
+                  GPU-accelerated sequence search for high throughput and low latency.
+                </p>
+                <a class="secondary" href="https://www.nature.com/articles/s41592-025-02819-8" target="_blank" rel="noopener">MMseqs2-GPU Paper &rarr;</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="publications" class="section compact">
+        <div class="container">
+          <h2>Publications</h2>
+          <p>
+            Full list available on <a href="https://orcid.org/0000-0001-8637-6719">ORCID</a> or <a href="https://scholar.google.com/citations?user=jaTEO_QAAAAJ">Google Scholar</a>.
+          </p>
+          <ul id="publication-list" class="pub-list" aria-live="polite"></ul>
+          <button type="button" id="show-more-pubs" class="show-more-pubs">Show more</button>
+        </div>
+      </section>
+
+      <section id="contact" class="section muted compact">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>
+            Email: <a href="mailto:milot@mirdita.org">milot@mirdita.org</a><br>
+            SKKU, Suwon, Korea
+          </p>
+          <div
+            id="contact-map"
+            class="contact-map"
+            data-lat="37.2945"
+            data-lng="126.9747"
+            data-zoom="14"
+            data-label="Sungkyunkwan University, Suwon"
+          ></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Font switcher widget (temporary). Comment out this block to disable. -->
+    <!-- <div id="font-switcher" class="font-switcher" role="dialog" aria-label="Font tester">
+      <div class="font-switcher__title">Font tester</div>
+      <div class="font-switcher__row">
+        <label class="font-switcher__label" for="font-switcher-heading">Header font</label>
+        <select id="font-switcher-heading"></select>
+        <input
+          id="font-switcher-heading-custom"
+          type="text"
+          placeholder="Custom name (overrides list)"
+        />
+      </div>
+      <div class="font-switcher__row">
+        <label class="font-switcher__label" for="font-switcher-body">Body font</label>
+        <select id="font-switcher-body"></select>
+        <input
+          id="font-switcher-body-custom"
+          type="text"
+          placeholder="Custom name (overrides list)"
+        />
+      </div>
+      <div class="font-switcher__history" aria-label="Font history">
+        <div class="font-switcher__history-title">History</div>
+        <div class="font-switcher__history-group">
+          <span class="font-switcher__history-label">Header</span>
+          <div id="font-switcher-heading-history" class="font-switcher__history-list"></div>
+        </div>
+        <div class="font-switcher__history-group">
+          <span class="font-switcher__history-label">Body</span>
+          <div id="font-switcher-body-history" class="font-switcher__history-list"></div>
+        </div>
+      </div>
+      <button type="button" id="font-switcher-reset">Reset to default</button>
+    </div>
+    <style>
+      .font-switcher {
+        position: fixed;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        z-index: 30;
+        display: grid;
+        gap: 0.6rem;
+        width: min(260px, 92vw);
+        padding: 0.85rem;
+        border-radius: 0.9rem;
+        border: 1px solid rgba(148, 163, 184, 0.35);
+        background: rgba(2, 6, 23, 0.92);
+        box-shadow: 0 18px 40px rgba(2, 6, 23, 0.55);
+        font-family: var(--body-font);
+        color: #e2e8f0;
+        font-size: 0.85rem;
+      }
+
+      .font-switcher__title {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      .font-switcher__row {
+        display: grid;
+        gap: 0.35rem;
+        font-weight: 500;
+      }
+
+      .font-switcher__label {
+        font-weight: 600;
+      }
+
+      .font-switcher select {
+        width: 100%;
+        padding: 0.35rem 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e2e8f0;
+        font-family: inherit;
+      }
+
+      .font-switcher input {
+        width: 100%;
+        padding: 0.35rem 0.5rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: rgba(15, 23, 42, 0.85);
+        color: #e2e8f0;
+        font-family: inherit;
+      }
+
+      .font-switcher__history {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .font-switcher__history-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        opacity: 0.75;
+      }
+
+      .font-switcher__history-group {
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .font-switcher__history-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        opacity: 0.85;
+      }
+
+      .font-switcher__history-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+      }
+
+      .font-switcher__history-chip {
+        border-radius: 999px;
+        border: 1px solid rgba(148, 163, 184, 0.45);
+        background: rgba(15, 23, 42, 0.85);
+        color: inherit;
+        font-size: 0.75rem;
+        font-weight: 500;
+        padding: 0.2rem 0.55rem;
+        cursor: pointer;
+      }
+
+      .font-switcher__history-chip:hover {
+        background: rgba(56, 189, 248, 0.2);
+      }
+
+      .font-switcher button {
+        padding: 0.4rem 0.6rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgba(148, 163, 184, 0.5);
+        background: rgba(56, 189, 248, 0.15);
+        color: #e2e8f0;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .font-switcher button:hover {
+        background: rgba(56, 189, 248, 0.3);
+      }
+
+      body {
+        font-family: var(--body-font);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      .lab-name,
+      .pi-name,
+      .team-name {
+        font-family: var(--heading-font);
+      }
+
+      @media (max-width: 720px) {
+        .font-switcher {
+          right: 1rem;
+          left: 1rem;
+          width: auto;
+        }
+      }
+    </style>
+    <script>
+      (() => {
+        const widget = document.getElementById("font-switcher");
+        const headingSelect = document.getElementById("font-switcher-heading");
+        const headingInput = document.getElementById("font-switcher-heading-custom");
+        const bodySelect = document.getElementById("font-switcher-body");
+        const bodyInput = document.getElementById("font-switcher-body-custom");
+        const headingHistoryList = document.getElementById("font-switcher-heading-history");
+        const bodyHistoryList = document.getElementById("font-switcher-body-history");
+        const resetButton = document.getElementById("font-switcher-reset");
+        if (
+          !widget ||
+          !headingSelect ||
+          !headingInput ||
+          !bodySelect ||
+          !bodyInput ||
+          !headingHistoryList ||
+          !bodyHistoryList ||
+          !resetButton
+        ) {
+          return;
+        }
+
+        const fontOptions = [
+          { label: "Diphylleia", family: "Diphylleia", category: "serif" },
+          { label: "Gothic A1", family: "Gothic A1", category: "sans" },
+          { label: "Inter", family: "Inter", category: "sans" },
+          { label: "Manrope", family: "Manrope", category: "sans" },
+          { label: "Space Grotesk", family: "Space Grotesk", category: "sans" },
+          { label: "IBM Plex Sans", family: "IBM Plex Sans", category: "sans" },
+          { label: "Sora", family: "Sora", category: "sans" },
+          { label: "Work Sans", family: "Work Sans", category: "sans" },
+          { label: "Source Serif 4", family: "Source Serif 4", category: "serif" },
+          { label: "Merriweather", family: "Merriweather", category: "serif" },
+          { label: "Spectral", family: "Spectral", category: "serif" },
+          { label: "Fraunces", family: "Fraunces", category: "serif" },
+          { label: "Playfair Display", family: "Playfair Display", category: "serif" },
+          { label: "IBM Plex Serif", family: "IBM Plex Serif", category: "serif" },
+          { label: "Bebas Neue", family: "Bebas Neue", category: "display" }
+        ];
+
+        const fontMap = new Map(fontOptions.map((font) => [font.family, font]));
+        const fallbackMap = {
+          sans: '"Helvetica Neue", Arial, sans-serif',
+          serif: 'Georgia, "Times New Roman", serif',
+          display: '"Helvetica Neue", Arial, sans-serif'
+        };
+
+        const linkEl = document.createElement("link");
+        linkEl.rel = "stylesheet";
+        linkEl.id = "font-switcher-google";
+        document.head.appendChild(linkEl);
+
+        const HISTORY_LIMIT = 8;
+        const INPUT_DEBOUNCE_MS = 350;
+        let inputDebounceTimer = null;
+        let historyRequestId = 0;
+        let currentHref = "";
+
+        const historyState = {
+          heading: {
+            items: [],
+            set: new Set(),
+            list: headingHistoryList,
+            input: headingInput
+          },
+          body: {
+            items: [],
+            set: new Set(),
+            list: bodyHistoryList,
+            input: bodyInput
+          }
+        };
+
+        function buildOption(font) {
+          const option = document.createElement("option");
+          option.value = font.family;
+          option.textContent = font.label;
+          return option;
+        }
+
+        function populateSelect(selectEl) {
+          fontOptions.forEach((font) => selectEl.appendChild(buildOption(font)));
+        }
+
+        function resolveFamily(customValue, fallbackValue) {
+          const trimmed = customValue.trim();
+          return trimmed ? trimmed : fallbackValue;
+        }
+
+        function renderHistory(state) {
+          state.list.innerHTML = "";
+          state.items.forEach((family) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "font-switcher__history-chip";
+            button.textContent = family;
+            button.addEventListener("click", () => {
+              state.input.value = family;
+              applyCurrentSelection();
+            });
+            state.list.appendChild(button);
+          });
+          if (!state.items.length) {
+            const empty = document.createElement("span");
+            empty.textContent = "None yet";
+            empty.style.opacity = "0.6";
+            empty.style.fontSize = "0.75rem";
+            state.list.appendChild(empty);
+          }
+        }
+
+        function addHistoryEntry(state, family) {
+          if (!family || state.set.has(family)) return;
+          state.items.unshift(family);
+          state.set.add(family);
+          if (state.items.length > HISTORY_LIMIT) {
+            const removed = state.items.pop();
+            if (removed) {
+              state.set.delete(removed);
+            }
+          }
+          renderHistory(state);
+        }
+
+        async function recordHistoryIfLoaded(state, family) {
+          if (!family || state.set.has(family)) return;
+          if (document.fonts?.load) {
+            await document.fonts.load(`400 1em "${family}"`);
+          }
+          if (document.fonts?.check && !document.fonts.check(`400 1em "${family}"`)) {
+            return;
+          }
+          addHistoryEntry(state, family);
+        }
+
+        function waitForStylesheetLoad(requestId, hrefChanged) {
+          if (!hrefChanged || !currentHref) return Promise.resolve(false);
+          return new Promise((resolve) => {
+            const onDone = () => {
+              if (requestId !== historyRequestId) return;
+              cleanup();
+              resolve(true);
+            };
+            const cleanup = () => {
+              linkEl.removeEventListener("load", onDone);
+              linkEl.removeEventListener("error", onDone);
+            };
+            linkEl.addEventListener("load", onDone);
+            linkEl.addEventListener("error", onDone);
+          });
+        }
+
+        function applyFontSelection(headingFamily, bodyFamily) {
+          const selectedFamilies = [headingFamily, bodyFamily].filter(Boolean);
+          const uniqueFamilies = Array.from(new Set(selectedFamilies));
+          const nextHref = uniqueFamilies.length
+            ? `https://fonts.googleapis.com/css2?${uniqueFamilies
+                .map((family) => {
+                  const encoded = encodeURIComponent(family).replace(/%20/g, "+");
+                  return `family=${encoded}:wght@300;400;500;600;700`;
+                })
+                .join("&")}&display=swap`
+            : "";
+          const hrefChanged = nextHref !== currentHref;
+          currentHref = nextHref;
+          if (uniqueFamilies.length) {
+            if (hrefChanged) {
+              linkEl.href = nextHref;
+            }
+          } else {
+            linkEl.removeAttribute("href");
+          }
+
+          const headingMeta = fontMap.get(headingFamily);
+          const bodyMeta = fontMap.get(bodyFamily);
+          const headingFallback = fallbackMap[headingMeta?.category || "sans"];
+          const bodyFallback = fallbackMap[bodyMeta?.category || "sans"];
+
+          document.documentElement.style.setProperty(
+            "--heading-font",
+            `"${headingFamily}", ${headingFallback}`
+          );
+          document.documentElement.style.setProperty(
+            "--body-font",
+            `"${bodyFamily}", ${bodyFallback}`
+          );
+
+          const requestId = ++historyRequestId;
+          void (async () => {
+            await waitForStylesheetLoad(requestId, hrefChanged);
+            if (requestId !== historyRequestId) return;
+            await recordHistoryIfLoaded(historyState.heading, headingFamily);
+            await recordHistoryIfLoaded(historyState.body, bodyFamily);
+          })();
+        }
+
+        populateSelect(headingSelect);
+        populateSelect(bodySelect);
+
+        const defaults = {
+          heading: "Diphylleia",
+          body: "Gothic A1"
+        };
+
+        function syncDefaults() {
+          headingSelect.value = defaults.heading;
+          headingInput.value = "";
+          bodySelect.value = defaults.body;
+          bodyInput.value = "";
+          applyFontSelection(defaults.heading, defaults.body);
+        }
+
+        function applyCurrentSelection() {
+          const headingFamily = resolveFamily(headingInput.value, headingSelect.value);
+          const bodyFamily = resolveFamily(bodyInput.value, bodySelect.value);
+          applyFontSelection(headingFamily, bodyFamily);
+        }
+
+        headingSelect.addEventListener("change", () => {
+          applyCurrentSelection();
+        });
+
+        bodySelect.addEventListener("change", () => {
+          applyCurrentSelection();
+        });
+
+        function debounceApplyCurrentSelection() {
+          if (inputDebounceTimer) {
+            window.clearTimeout(inputDebounceTimer);
+          }
+          inputDebounceTimer = window.setTimeout(() => {
+            inputDebounceTimer = null;
+            applyCurrentSelection();
+          }, INPUT_DEBOUNCE_MS);
+        }
+
+        headingInput.addEventListener("input", debounceApplyCurrentSelection);
+        bodyInput.addEventListener("input", debounceApplyCurrentSelection);
+
+        resetButton.addEventListener("click", syncDefaults);
+
+        renderHistory(historyState.heading);
+        renderHistory(historyState.body);
+        syncDefaults();
+      })();
+    </script> -->
+    <!-- End font switcher widget -->
+
+    <script defer src="static/leaflet.js"></script>
+    <script defer src="static/contact-map.js"></script>
+    <script async src="static/bibtex.js"></script>
+    <script type="module" async src="static/molstar.js"></script>
+  </body>
+</html>

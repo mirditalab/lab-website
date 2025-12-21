@@ -1,0 +1,6 @@
+minimolstar/node_modules/
+static/molstar.js
+static/molstar.js.map
+
+# Mac
+.DS_Store

@@ -1,0 +1,22 @@
+{
+  "name": "minimolstar",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c --environment NODE_ENV:production",
+    "build:watch": "rollup -c -w",
+    "analyze": "rollup -c --environment NODE_ENV:production --environment ANALYZE:true",
+    "size:build": "npm run build && npm run size"
+  },
+  "dependencies": {
+    "molstar": "5.4.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "@rollup/plugin-terser": "^0.4.4",
+    "rollup": "^4.20.0",
+    "rollup-plugin-visualizer": "^5.12.0"
+  }
+}
