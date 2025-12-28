@@ -3,7 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mirdita Lab | Laboratory for Bioinformatics &amp; Machine Learning</title>
+    <title>Mirdita Lab - Laboratory of Bioinformatics &amp; Machine Learning</title>
+    <meta property="og:title" content="Mirdita Lab - Laboratory of Bioinformatics &amp; Machine Learning" />
+    <meta
+      name="description"
+      content="Mirdita Lab builds scalable bioinformatics methods."
+    />
+    <meta
+      property="og:description"
+      content="Mirdita Lab builds scalable bioinformatics methods."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mirdita.org" />
+    <!-- <meta property="og:image" content="static/avatar_mm.jpg" /> -->
+    <meta property="og:image:alt" content="Mirdita Lab" />
+    <link rel="canonical" href="https://mirdita.org" />
     <link rel="stylesheet" href="static/all.min.css" />
     <link rel="stylesheet" href="static/academicons.min.css" />
     <link rel="stylesheet" href="static/fonts.css" />
@@ -14,8 +28,8 @@
     <header class="site-header">
       <div class="container">
         <div class="brand">
-          <span class="lab-name">Mirdita Lab</span>
-          <span class="tagline">Laboratory for Bioinformatics <span class="fancy-amp">&amp;</span> Machine Learning</span>
+          <span class="lab-name"><a href="https://mirdita.org">Mirdita Lab</a></span>
+          <span class="tagline">Laboratory of Bioinformatics <span class="fancy-amp">&amp;</span> Machine Learning</span>
         </div>
         <nav>
           <a href="#team">Team</a>
@@ -30,7 +44,7 @@
       <section class="hero">
         <div class="container hero-layout">
           <div class="hero-content">
-            <h1>Laboratory for Bioinformatics&nbsp;<span class="fancy-amp">&amp;</span> Machine&nbsp;Learning</h1>
+            <h1>Laboratory of Bioinformatics&nbsp;<span class="fancy-amp">&amp;</span> Machine&nbsp;Learning</h1>
             <p>
               We bridge algorithms and usable software to map evolution, decode protein
               function, and annotate the unknown at scale.
@@ -68,7 +82,7 @@
         <div class="container pi-layout">
           <div class="pi-summary">
             <div class="pi-avatar">
-              <img src="static/avatar_mm.jpg" alt="Dr. Milot Mirdita" />
+              <img src="static/avatar_mm.jpg" alt="Milot Mirdita" />
             </div>
             <p class="pi-name">Milot Mirdita</p>
             <p class="pi-role">Assistant Professor at SKKU</p>
@@ -116,37 +130,34 @@
           <p>
             We are hiring at all levels (lab manager, interns, graduate students, postdocs, and research software engineers) excited for
             large-scale data processing, HPC/GPU programming, machine learning or open-source scientific software. Send a short
-            introduction and CV to <a href="mailto:milot@mirdita.org">milot@mirdita.org</a>.
+            introduction and CV to <a href="mailto:milot@mirdita.org" target="_blank">milot@mirdita.org</a>.
           </p>
           <div class="team-grid">
-            <div class="team-card">
-              <div class="team-avatar" aria-hidden="true">MM</div>
-              <p class="team-name">Milot Mirdita</p>
-              <p class="team-title">Assistant Professor</p>
-            </div>
-            <div class="team-card placeholder">
-              <div class="team-avatar placeholder" aria-hidden="true">+</div>
-              <p class="team-name">You?</p>
-              <p class="team-title">Join us</p>
-            </div>
-            <div class="team-card placeholder">
-              <div class="team-avatar placeholder" aria-hidden="true">+</div>
-              <p class="team-name">You?</p>
-              <p class="team-title">Join us</p>
-            </div>
-            <div class="team-card placeholder">
-              <div class="team-avatar placeholder" aria-hidden="true">+</div>
-              <p class="team-name">You?</p>
-              <p class="team-title">Join us</p>
-            </div>
-            <div class="team-card placeholder">
-              <div class="team-avatar placeholder" aria-hidden="true">+</div>
-              <p class="team-name">You?</p>
-              <p class="team-title">Join us</p>
-            </div>
+            <!-- team:grid:start -->
+            <!-- team:grid:end -->
+          </div>
+          <div class="team-details">
+            <!-- team:details:start -->
+            <!-- team:details:end -->
           </div>
         </div>
       </section>
+
+      <!-- alumni:section:start -->
+      <section id="alumni" class="section compact">
+        <div class="container">
+          <h2>Alumni</h2>
+          <div class="team-grid">
+            <!-- alumni:grid:start -->
+            <!-- alumni:grid:end -->
+          </div>
+          <div class="team-details">
+            <!-- alumni:details:start -->
+            <!-- alumni:details:end -->
+          </div>
+        </div>
+      </section>
+      <!-- alumni:section:end -->
 
       <section id="software" class="section muted compact">
         <div class="container">
@@ -161,6 +172,8 @@
                   and open-source contributors.
                 </p>
                 <a class="secondary" href="https://colabfold.com" target="_blank" rel="noopener">Open ColabFold &rarr;</a>
+                <a class="secondary" href="hhttps://www.nature.com/articles/s41596-024-01060-5" target="_blank" rel="noopener">Protocol &rarr;</a>
+                <a class="secondary" href="https://github.com/sokrypton/ColabFold" target="_blank" rel="noopener">GitHub &rarr;</a>
               </div>
             </article>
             <article class="software-card">
@@ -171,6 +184,8 @@
                   Structure search that lets researchers query massive protein databases for homologous folds in seconds.
                 </p>
                 <a class="secondary" href="https://search.foldseek.com" target="_blank" rel="noopener">Visit Foldseek Server &rarr;</a>
+                <a class="secondary" href="https://www.nature.com/articles/s41587-023-01773-0" target="_blank" rel="noopener">Paper &rarr;</a>
+                <a class="secondary" href="https://github.com/steineggerlab/foldseek" target="_blank" rel="noopener">GitHub &rarr;</a>
               </div>
             </article>
             <article class="software-card">
@@ -221,6 +236,7 @@
     <!-- <script defer src="static/font-switcher-widget.js"></script> -->
     <script defer src="static/leaflet.js"></script>
     <script defer src="static/contact-map.js"></script>
+    <script defer src="static/team.js"></script>
     <script async src="static/bibtex.js"></script>
     <script type="module" async src="static/molstar.js"></script>
   </body>

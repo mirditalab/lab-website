@@ -551,6 +551,22 @@ li {
   align-items: center;
   gap: var(--baseline-half);
   text-align: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.team-card:focus-visible {
+  outline: 2px solid rgba(226, 232, 240, 0.65);
+  outline-offset: 4px;
+}
+
+.team-card.is-active .team-avatar {
+  border-color: rgba(226, 232, 240, 0.6);
 }
 
 .team-card.placeholder .team-name,
@@ -561,15 +577,36 @@ li {
 .team-avatar {
   width: calc(var(--baseline) * 7);
   height: calc(var(--baseline) * 7);
-  border-radius: 999px;
+  border-radius: 50%;
   border: 1px solid rgba(148, 163, 184, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   font-weight: 600;
   font-size: 1rem;
   color: #e2e8f0;
   background: rgba(2, 6, 23, 0.35);
+  overflow: hidden;
+  clip-path: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.team-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.team-avatar-initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  letter-spacing: 0.05em;
 }
 
 .team-avatar.placeholder {
@@ -585,6 +622,74 @@ li {
 .team-title {
   color: #cbd5f5;
   margin-bottom: 0;
+}
+
+.team-details {
+  margin-top: calc(var(--baseline) * 2);
+  display: grid;
+  gap: var(--baseline);
+}
+
+.team-detail {
+  padding: calc(var(--baseline) * 1.5);
+  border-radius: 1rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: rgba(15, 23, 42, 0.5);
+  box-shadow: 0 20px 45px rgba(2, 6, 23, 0.35);
+}
+
+.team-detail[hidden] {
+  display: none;
+}
+
+.team-detail .pi-summary {
+  gap: var(--baseline-half);
+}
+
+.team-orgs {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: #cbd5f5;
+  text-align: center;
+}
+
+.team-orgs a {
+  color: inherit;
+}
+
+.team-bio > :first-child {
+  margin-top: 0;
+}
+
+.team-education {
+  margin-top: var(--baseline);
+}
+
+.team-education-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--baseline-half);
+}
+
+.team-education-list li {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.team-education-course {
+  font-weight: 600;
+}
+
+.team-education-institution {
+  color: #cbd5f5;
+}
+
+.team-education-year {
+  color: rgba(226, 232, 240, 0.6);
+  font-size: 0.9rem;
 }
 
 .pi-links {
