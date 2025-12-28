@@ -31,11 +31,34 @@ let visibleCount = PAGE_SIZE;
 let publicationList = null;
 let showMoreButton = null;
 
+function getPreloadedEntries() {
+  const dataElement = document.getElementById("publication-data");
+  if (!dataElement) return null;
+  const raw = dataElement.textContent?.trim();
+  if (!raw) return null;
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : null;
+  } catch (error) {
+    console.warn("Failed to parse embedded publication data", error);
+    return null;
+  }
+}
+
 async function loadPublications() {
   publicationList = document.getElementById("publication-list");
   showMoreButton = document.getElementById("show-more-pubs");
   if (!publicationList) return;
   try {
+    const preloadedEntries = getPreloadedEntries();
+    if (preloadedEntries) {
+      allEntries = preloadedEntries;
+      visibleCount = Math.min(PAGE_SIZE, allEntries.length);
+      bindCopyButtons(allEntries, publicationList);
+      applyVisibility();
+      initShowMoreButton();
+      return;
+    }
     const response = await fetch("static/zotero.bib");
     const text = await response.text();
     const entries = parseBibEntries(text);
@@ -52,9 +75,8 @@ async function loadPublications() {
 
 function renderVisibleEntries() {
   if (!publicationList) return;
-  const visibleEntries = allEntries.slice(0, visibleCount);
-  renderPublications(visibleEntries, publicationList);
-  updateShowMoreState();
+  renderPublications(allEntries, publicationList);
+  applyVisibility();
 }
 
 function initShowMoreButton() {
@@ -89,6 +111,19 @@ function renderPublications(entries, list) {
     .map((entry, index) => createPublicationMarkup(entry, index))
     .join("");
   bindCopyButtons(entries, list);
+}
+
+function applyVisibility() {
+  if (!publicationList) return;
+  const items = Array.from(publicationList.querySelectorAll("li"));
+  if (!items.length) {
+    updateShowMoreState();
+    return;
+  }
+  items.forEach((item, index) => {
+    item.hidden = index >= visibleCount;
+  });
+  updateShowMoreState();
 }
 
 function createPublicationMarkup(entry, index) {

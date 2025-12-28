@@ -8,6 +8,7 @@ const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."
 const TEAM_DIR = path.join(ROOT_DIR, "team");
 const TEMPLATE_PATH = path.join(ROOT_DIR, "index.template.html");
 const OUTPUT_PATH = path.join(ROOT_DIR, "index.html");
+const BIB_PATH = path.join(ROOT_DIR, "static", "zotero.bib");
 const STATIC_TEAM_DIR = path.join(ROOT_DIR, "static", "team");
 const AVATAR_SIZE = 336;
 const GRID_START = "<!-- team:grid:start -->";
@@ -20,13 +21,48 @@ const ALUMNI_GRID_START = "<!-- alumni:grid:start -->";
 const ALUMNI_GRID_END = "<!-- alumni:grid:end -->";
 const ALUMNI_DETAILS_START = "<!-- alumni:details:start -->";
 const ALUMNI_DETAILS_END = "<!-- alumni:details:end -->";
+const PUBS_LIST_START = "<!-- pubs:list:start -->";
+const PUBS_LIST_END = "<!-- pubs:list:end -->";
+const PUBS_DATA_START = "<!-- pubs:data:start -->";
+const PUBS_DATA_END = "<!-- pubs:data:end -->";
 const GRID_INDENT = "            ";
 const DETAIL_INDENT = `${GRID_INDENT}      `;
 const DETAIL_INNER_INDENT = `${GRID_INDENT}        `;
+const PUB_LIST_INDENT = "            ";
+const PUB_INNER_INDENT = "              ";
+const PUB_DEEP_INDENT = "                ";
+const PUB_DATA_INDENT = "          ";
 const PLACEHOLDER_COUNT = 1;
 const PLACEHOLDER_LABEL = "You?";
 const PLACEHOLDER_ROLE = "Join us";
 const PLACEHOLDER_LINK = "mailto:milot@mirdita.org";
+const PUB_PAGE_SIZE = 5;
+const MONTH_MAP = {
+  jan: 1,
+  january: 1,
+  feb: 2,
+  february: 2,
+  mar: 3,
+  march: 3,
+  apr: 4,
+  april: 4,
+  may: 5,
+  jun: 6,
+  june: 6,
+  jul: 7,
+  july: 7,
+  aug: 8,
+  august: 8,
+  sep: 9,
+  sept: 9,
+  september: 9,
+  oct: 10,
+  october: 10,
+  nov: 11,
+  november: 11,
+  dec: 12,
+  december: 12,
+};
 
 function stripInlineComment(line) {
   let inQuotes = false;
@@ -337,6 +373,236 @@ function buildAvatar(command, inputPath, outputPath, isJpeg) {
 
   args.push(outputPath);
   execFileSync(command, args, { stdio: "ignore" });
+}
+
+function parseBibEntries(text) {
+  if (!text) return [];
+  const rawEntries = text
+    .split(/(?=@\w+)/g)
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+
+  const entries = rawEntries
+    .map((entryText) => {
+      const normalizedEntry = entryText.startsWith("@") ? entryText : `@${entryText}`;
+      const typeMatch = normalizedEntry.match(/^@(\w+)/);
+      const type = typeMatch ? typeMatch[1] : "Article";
+      const fields = extractFields(normalizedEntry);
+      const year = parseInt(fields.year, 10) || 0;
+      const month = monthToNumber(fields.month);
+      const authorList = parseAuthorList(fields.author);
+
+      return {
+        type,
+        title: cleanupText(fields.title || "Untitled"),
+        authors: formatAuthors(authorList),
+        journal: cleanupText(fields.journal || ""),
+        year,
+        month,
+        displayDate: buildDisplayDate(year),
+        url: cleanupUri(fields.url),
+        doi: cleanupUri(fields.doi),
+        bibtex: normalizedEntry.trim(),
+        fullAuthors: authorList,
+      };
+    })
+    .filter((entry) => entry.year);
+
+  return entries.sort((a, b) => {
+    if (b.year !== a.year) return b.year - a.year;
+    return (b.month || 0) - (a.month || 0);
+  });
+}
+
+function extractFields(entryText) {
+  const start = entryText.indexOf("{");
+  if (start === -1) return {};
+
+  const fields = {};
+  let i = start + 1;
+
+  while (i < entryText.length) {
+    const char = entryText[i];
+    if (char === "}") break;
+    if (char === "," || /\s/.test(char)) {
+      i++;
+      continue;
+    }
+
+    const keyStart = i;
+    while (i < entryText.length && /[\w-]/.test(entryText[i])) {
+      i++;
+    }
+    const key = entryText.slice(keyStart, i).toLowerCase();
+    if (!key) {
+      i++;
+      continue;
+    }
+
+    while (i < entryText.length && /\s/.test(entryText[i])) {
+      i++;
+    }
+    if (entryText[i] !== "=") {
+      while (i < entryText.length && !/[,\n}]/.test(entryText[i])) {
+        i++;
+      }
+      continue;
+    }
+    i++;
+
+    while (i < entryText.length && /\s/.test(entryText[i])) {
+      i++;
+    }
+
+    const { value, nextIndex } = readFieldValue(entryText, i);
+    fields[key] = value.replace(/\s+/g, " ").trim();
+    i = nextIndex;
+  }
+
+  return fields;
+}
+
+function readFieldValue(text, startIndex) {
+  let i = startIndex;
+  let value = "";
+
+  if (text[i] === "{") {
+    let depth = 0;
+    i++;
+    while (i < text.length) {
+      const char = text[i];
+      if (char === "{") {
+        depth++;
+        value += char;
+      } else if (char === "}") {
+        if (depth === 0) break;
+        depth--;
+        value += char;
+      } else {
+        value += char;
+      }
+      i++;
+    }
+    return { value: value.trim(), nextIndex: Math.min(i + 1, text.length) };
+  }
+
+  if (text[i] === "\"") {
+    i++;
+    while (i < text.length) {
+      const char = text[i];
+      if (char === "\"") break;
+      if (char === "\\" && i + 1 < text.length) {
+        value += text[i + 1];
+        i += 2;
+        continue;
+      }
+      value += char;
+      i++;
+    }
+    return { value: value.trim(), nextIndex: Math.min(i + 1, text.length) };
+  }
+
+  while (i < text.length && !/[,\n}]/.test(text[i])) {
+    value += text[i];
+    i++;
+  }
+  return { value: value.trim(), nextIndex: i };
+}
+
+function monthToNumber(value) {
+  const key = normalizeMonthKey(value);
+  if (!key) return 0;
+  if (MONTH_MAP[key]) return MONTH_MAP[key];
+  const numeric = parseInt(key, 10);
+  return Number.isNaN(numeric) ? 0 : Math.min(Math.max(numeric, 1), 12);
+}
+
+function buildDisplayDate(year) {
+  return year ? String(year) : "";
+}
+
+function normalizeMonthKey(value) {
+  if (!value) return "";
+  return value.replace(/[{}"]/g, "").trim().toLowerCase();
+}
+
+function cleanupText(value = "") {
+  if (!value) return "";
+  return value.replace(/\s+/g, " ").replace(/[{}]/g, "").trim();
+}
+
+function cleanupUri(value = "") {
+  if (!value) return "";
+  return value.replace(/[{}]/g, "").trim();
+}
+
+function parseAuthorList(value = "") {
+  const authors = value ? value.replace(/\s+/g, " ").trim() : "";
+  if (!authors) return [];
+  return authors
+    .split(/\s+and\s+/i)
+    .map((author) => reorderAuthorName(cleanupText(author)))
+    .filter(Boolean);
+}
+
+function formatAuthors(authors = []) {
+  if (!authors.length) return "Unknown author";
+  if (authors.length > 10) return `${authors[0]} et al`;
+  if (authors.length === 1) return authors[0];
+  if (authors.length === 2) return `${authors[0]} and ${authors[1]}`;
+  const leading = authors.slice(0, -1).join(", ");
+  const last = authors[authors.length - 1];
+  return `${leading}, and ${last}`;
+}
+
+function reorderAuthorName(name = "") {
+  if (!name) return "";
+  if (!name.includes(",")) return name;
+  const [last, ...rest] = name.split(",");
+  const first = rest.join(",").trim();
+  const lastName = last.trim();
+  const reordered = [first, lastName].filter(Boolean).join(" ");
+  return reordered.replace(/\s+/g, " ").trim();
+}
+
+function serializeJsonForHtml(value) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+function renderPublicationMarkup(entry, index) {
+  const copyButton =
+    `<button type="button" class="copy-bibtex" data-entry-index="${index}" aria-label="Copy BibTeX" title="Copy BibTeX">&#10697;</button>`;
+  const doiMarkup = entry.doi
+    ? ` · <a href="https://doi.org/${escapeHtml(entry.doi)}" target="_blank" rel="noopener">DOI</a> ${copyButton}`
+    : ` · ${copyButton}`;
+
+  const titleLink = entry.url || (entry.doi ? `https://doi.org/${entry.doi}` : "");
+  const titleMarkup = titleLink
+    ? `<a href="${escapeHtml(titleLink)}" target="_blank" rel="noopener">${escapeHtml(entry.title)}</a>`
+    : escapeHtml(entry.title);
+
+  const authorTitle = entry.fullAuthors?.length
+    ? ` title="${escapeHtml(entry.fullAuthors.join(", "))}"`
+    : "";
+
+  return (
+    `${PUB_LIST_INDENT}<li>` +
+    `\n${PUB_INNER_INDENT}<p class="pub-title">` +
+    `\n${PUB_DEEP_INDENT}${titleMarkup}` +
+    `\n${PUB_INNER_INDENT}</p>` +
+    `\n${PUB_INNER_INDENT}<p class="pub-meta">` +
+    `\n${PUB_DEEP_INDENT}<span class="pub-authors"${authorTitle}>${escapeHtml(entry.authors)}</span>. ${escapeHtml(entry.journal || entry.type)} (${escapeHtml(entry.displayDate)})` +
+    `\n${PUB_DEEP_INDENT}${doiMarkup}` +
+    `\n${PUB_INNER_INDENT}</p>` +
+    `\n${PUB_LIST_INDENT}</li>`
+  );
+}
+
+function renderPublicationList(entries) {
+  if (!entries.length) {
+    return `${PUB_LIST_INDENT}<li>No publications found.</li>`;
+  }
+  return entries.map(renderPublicationMarkup).join("\n");
 }
 
 function slugify(value) {
@@ -668,6 +934,19 @@ async function main() {
   } else {
     updated = removeBetweenMarkers(updated, ALUMNI_SECTION_START, ALUMNI_SECTION_END);
   }
+
+  let bibText = "";
+  try {
+    bibText = await fs.readFile(BIB_PATH, "utf8");
+  } catch (error) {
+    console.warn(`Unable to read ${BIB_PATH}: ${error.message}`);
+  }
+  const bibEntries = parseBibEntries(bibText);
+  const publicationListMarkup = renderPublicationList(bibEntries);
+  const publicationDataMarkup = `${PUB_DATA_INDENT}<script type="application/json" id="publication-data">${serializeJsonForHtml(bibEntries)}</script>`;
+
+  updated = replaceBetweenMarkers(updated, PUBS_LIST_START, PUBS_LIST_END, publicationListMarkup);
+  updated = replaceBetweenMarkers(updated, PUBS_DATA_START, PUBS_DATA_END, publicationDataMarkup);
   await fs.writeFile(OUTPUT_PATH, updated);
 
   console.log(
