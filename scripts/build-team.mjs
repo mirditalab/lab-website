@@ -8,10 +8,12 @@ const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."
 const TEAM_DIR = path.join(ROOT_DIR, "team");
 const I18N_DIR = path.join(ROOT_DIR, "i18n");
 const TEMPLATE_PATH = path.join(ROOT_DIR, "index.template.html");
+const OG_TEMPLATE_PATH = path.join(ROOT_DIR, "og-image.template.html");
 const OUTPUT_MAP = {
   en: path.join(ROOT_DIR, "index.en.html"),
   ko: path.join(ROOT_DIR, "index.ko.html"),
 };
+const OG_OUTPUT_PATH = path.join(ROOT_DIR, "og-image.html");
 const BIB_PATH = path.join(ROOT_DIR, "static", "zotero.bib");
 const STATIC_TEAM_DIR = path.join(ROOT_DIR, "static", "team");
 const AVATAR_SIZE = 336;
@@ -1024,6 +1026,12 @@ async function loadMembers(teamDir, avatarFallbackDirs = []) {
 
 async function main() {
   const source = await fs.readFile(TEMPLATE_PATH, "utf8");
+  let ogTemplate = "";
+  try {
+    ogTemplate = await fs.readFile(OG_TEMPLATE_PATH, "utf8");
+  } catch (error) {
+    console.warn(`Unable to read ${OG_TEMPLATE_PATH}: ${error.message}`);
+  }
   const i18nEn = await loadI18n("en");
   const i18nKo = await loadI18n("ko");
   const i18nMap = { en: i18nEn, ko: i18nKo };
@@ -1096,6 +1104,12 @@ async function main() {
     console.log(
       `Updated ${path.basename(outputPath)} with ${activeMembers.length} member(s) and ${alumniMembers.length} alumni.`
     );
+  }
+
+  if (ogTemplate) {
+    const ogOutput = applyI18n(ogTemplate, i18nEn, i18nEn, "en");
+    await fs.writeFile(OG_OUTPUT_PATH, ogOutput);
+    console.log(`Updated ${path.basename(OG_OUTPUT_PATH)} for OG screenshots.`);
   }
 }
 

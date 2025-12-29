@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="{{lang}}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{t:site.title}}</title>
+    <link rel="stylesheet" href="static/all.min.css" />
+    <link rel="stylesheet" href="static/academicons.min.css" />
+    <link rel="stylesheet" href="static/fonts.css" />
+    <link rel="stylesheet" href="static/styles.css" />
+    <script src="static/molstar.js"></script>
+    <style>
+      :root {
+        --body-font-size: 20px;
+      }
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      body {
+        margin: 0;
+        min-height: 0;
+        overflow: hidden;
+        line-height: normal;
+      }
+
+      body::before,
+      body::after {
+        height: 100%;
+        min-height: 100%;
+        background-attachment: scroll;
+      }
+
+      body::before {
+        /* inset: -20% 0; */
+        background: radial-gradient(circle at 15% 20%, rgba(79, 70, 229, 0.45), transparent 50%),
+          radial-gradient(circle at 80% 10%, rgba(14, 165, 233, 0.35), transparent 45%),
+          radial-gradient(circle at 30% 80%, rgba(236, 72, 153, 0.35), transparent 55%),
+          radial-gradient(circle at 85% 75%, rgba(16, 185, 129, 0.3), transparent 50%),
+          radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.2), transparent 60%),
+          radial-gradient(circle at 50% 115%, rgba(59, 130, 246, 0.3), transparent 60%);
+        filter: blur(80px);
+      }
+
+      body::after {
+        position: absolute;
+        inset: 6% 5% 0 0;
+      }
+
+      .og-canvas {
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        padding: 0 64px;
+      }
+
+      .og-layout {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        min-height: 0;
+      }
+
+      .og-content {
+        flex: 1.35;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .og-visual {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .og-brand {
+        font-weight: 600;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #e2e8f0;
+      }
+
+      .og-title {
+        font-size: 2.6rem;
+        line-height: 1.1;
+        max-width: 720px;
+      }
+
+      .og-subtitle {
+        font-size: 1.15rem;
+        color: #cbd5f5;
+        max-width: 620px;
+      }
+
+      .og-url {
+        font-size: 0.95rem;
+        color: rgba(226, 232, 240, 0.6);
+      }
+
+      .og-canvas .structure-viewer {
+        width: 100%;
+        height: 480px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="og-canvas">
+      <div class="og-layout">
+        <div class="og-content">
+          <div class="og-brand">{{t:site.name}}</div>
+          <h1 class="og-title">{{t:hero.title}}</h1>
+          <p class="og-subtitle">{{t:hero.subtitle}}</p>
+          <div class="og-url">mirdita.org</div>
+        </div>
+        <div class="og-visual">
+          <div
+            class="structure-viewer"
+            data-structure-src="static/AF-Q8W3K0-F1-model_v6.pdb"
+            data-structure-status=""
+            data-structure-viewer
+          >
+            <div class="structure-viewer__canvas-target" data-structure-target></div>
+            <a
+              class="structure-viewer__link"
+              href="https://alphafold.ebi.ac.uk/entry/Q8W3K0"
+              target="_blank"
+              rel="noopener"
+              aria-label="{{t:structure.aria}}"
+            >
+              Q8W3K0
+            </a>
+            <span class="structure-viewer__status"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script defer src="static/molstar.js"></script>
+  </body>
+</html>

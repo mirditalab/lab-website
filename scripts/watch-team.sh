@@ -6,7 +6,7 @@ if ! command -v fswatch >/dev/null 2>&1; then
   exit 1
 fi
 
-fswatch -o index.template.html i18n team/en team/ko | while read -r _; do
+fswatch -o *.template.html i18n team/en team/ko | while read -r _; do
   node scripts/build-team.mjs
-  echo "[watch-team] Rebuilt index.en.html and index.ko.html"
+  echo "[watch-team] Rebuilt site"
 done

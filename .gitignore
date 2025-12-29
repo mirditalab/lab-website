@@ -1,10 +1,12 @@
-minimolstar/node_modules/
+node_modules/
 static/molstar.js
 static/molstar.js.map
 static/team/
+static/og.png
 index.html
 index.en.html
 index.ko.html
+og-image.html
 
 # Mac
 .DS_Store
