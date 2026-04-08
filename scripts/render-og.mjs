@@ -86,13 +86,18 @@ async function main() {
   const server = await startServer();
   let browser;
   try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: process.env.CI ? ["--no-sandbox", "--disable-setuid-sandbox"] : [],
-    });
+    const args = [
+      "--use-gl=swiftshader",
+      "--enable-webgl",
+      "--ignore-gpu-blocklist",
+    ];
+    if (process.env.CI) {
+      args.push("--no-sandbox", "--disable-setuid-sandbox");
+    }
+    browser = await puppeteer.launch({ headless: true, args });
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
-    await page.goto(OG_URL, { waitUntil: "domcontentloaded" });
+    await page.goto(OG_URL, { waitUntil: "networkidle2" });
 
     try {
       await page.evaluateHandle("document.fonts.ready");
@@ -100,7 +105,7 @@ async function main() {
       // Ignore font readiness errors in older Firefox/Chromium builds.
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, WAIT_MS));
 
     await page.screenshot({ path: OUTPUT_PATH, type: "png" });
     console.log(`Wrote ${OUTPUT_PATH}`);
