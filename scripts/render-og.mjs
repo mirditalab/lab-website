@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import http from "http";
 import { createReadStream } from "fs";
-import { stat } from "fs/promises";
+import { stat, unlink } from "fs/promises";
+import { execFileSync } from "child_process";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -99,7 +100,7 @@ async function main() {
     }
     browser = await puppeteer.launch({ headless: true, args });
     const page = await browser.newPage();
-    await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
+    await page.setViewport({ width: 1200, height: 630, deviceScaleFactor: 2 });
     page.on("console", (msg) => console.log("PAGE:", msg.type(), msg.text()));
     page.on("pageerror", (err) => console.error("PAGE ERROR:", err.message));
     page.on("response", (res) => { if (res.status() >= 400) console.error(`HTTP ${res.status()}:`, res.url()); });
@@ -114,7 +115,12 @@ async function main() {
 
     await new Promise((resolve) => setTimeout(resolve, WAIT_MS));
 
-    await page.screenshot({ path: OUTPUT_PATH, type: "png" });
+    const hiresPath = OUTPUT_PATH.replace(/\.png$/, ".2x.png");
+    await page.screenshot({ path: hiresPath, type: "png" });
+    let imCmd = "magick";
+    try { execFileSync("magick", ["-version"], { stdio: "ignore" }); } catch { imCmd = "convert"; }
+    execFileSync(imCmd, [hiresPath, "-resize", "1200x630", "-quality", "95", OUTPUT_PATH]);
+    await unlink(hiresPath);
     console.log(`Wrote ${OUTPUT_PATH}`);
   } finally {
     if (browser) {
