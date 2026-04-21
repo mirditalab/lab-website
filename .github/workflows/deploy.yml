@@ -25,15 +25,26 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+
+      - name: Cache node_modules and molstar build
+        id: cache-build
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            minimolstar/node_modules
+            minimolstar/molstar.js
+          key: build-${{ runner.os }}-${{ hashFiles('package-lock.json', 'minimolstar/package-lock.json') }}
 
       - name: Install ImageMagick
         run: sudo apt-get install -y imagemagick
 
       - name: Install dependencies
+        if: steps.cache-build.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build mol*
+        if: steps.cache-build.outputs.cache-hit != 'true'
         run: npm run build:molstar
 
       - name: Build site
