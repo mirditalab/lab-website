@@ -3,10 +3,6 @@ name = "Hongju Lee"
 role = "인턴"
 alumni = false
 organizations = [ { name = "성균관대학교 의대", url = "https://www.skkumed.ac.kr" } ]
-bio = "Research Intern @ Mirdita Lab, Sungkyunkwan University
-💊 Pharm.D. background with a passion for Protein Engineering.
-💻 Integrating Wet-lab expertise into Computational Structural Biology.
-🧬 Focus: Protein-Protein Interactions & Structural Bioinformatics."
 email = "hongjupink@gmail.com"
 
 [[education.courses]]
@@ -14,7 +10,8 @@ email = "hongjupink@gmail.com"
   institution = "Seoul National University"
   year = 2025
 
-  course = "Pharm.D"
+[[education.courses]]
+  course = "Pharm.D."
   institution = "Ewha Woman's University"
   year = 2023
 
@@ -34,3 +31,7 @@ email = "hongjupink@gmail.com"
   link = ""
   alt = "Google Scholar"
 +++
+<p>Research Intern @ Mirdita Lab, Sungkyunkwan University<br>
+💊 Pharm.D. background with a passion for Protein Engineering.<br>
+💻 Integrating Wet-lab expertise into Computational Structural Biology.<br>
+🧬 Focus: Protein-Protein Interactions &amp; Structural Bioinformatics.</p>
