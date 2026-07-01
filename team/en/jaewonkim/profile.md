@@ -13,7 +13,7 @@ email = "volje23@gmail.com"
 [[social]]
   icon = "envelope"
   icon_pack = "fas"
-  link = "volje23@gmail.com"
+  link = "mailto:volje23@gmail.com"
 
 [[social]]
   icon = "github"
