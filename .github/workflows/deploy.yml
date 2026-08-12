@@ -33,9 +33,10 @@ jobs:
           path: |
             node_modules
             minimolstar/node_modules
-            minimolstar/molstar.js
+            static/molstar.js
+            static/molstar.js.map
             ~/.cache/puppeteer
-          key: build-${{ runner.os }}-${{ hashFiles('package-lock.json', 'minimolstar/package-lock.json') }}
+          key: build-${{ runner.os }}-${{ hashFiles('package-lock.json', 'minimolstar/package-lock.json', 'minimolstar/molstar.js', 'minimolstar/rollup.config.mjs') }}
 
       - name: Install ImageMagick
         run: sudo apt-get install -y imagemagick
@@ -49,7 +50,7 @@ jobs:
         run: npx puppeteer browsers install chrome
 
       - name: Build mol*
-        if: steps.cache-build.outputs.cache-hit != 'true'
+        if: steps.cache-build.outputs.cache-hit != 'true' || hashFiles('static/molstar.js') == ''
         run: npm run build:molstar
 
       - name: Build site
