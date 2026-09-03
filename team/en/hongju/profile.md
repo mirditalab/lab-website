@@ -1,7 +1,7 @@
 +++
 name = "Hongju Lee"
 role = "Intern"
-alumni = false
+alumni = true
 organizations = [ { name = "SKKU School of Medicine", url = "https://www.skkumed.ac.kr" } ]
 email = "hongjupink@gmail.com"
 

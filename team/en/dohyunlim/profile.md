@@ -1,7 +1,7 @@
 +++
 name = "Dohyun Lim"
 role = "Intern"
-alumni = false
+alumni = true
 organizations = [ { name = " CHA university Divison of Life Science", url = "https://bs.cha.ac.kr/" } ]
 bio = ""
 email = "limpaul9_513@naver.com"

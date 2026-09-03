@@ -1,7 +1,7 @@
 +++
 name = "Dohyun Lim"
 role = "인턴"
-alumni = false
+alumni = true
 organizations = [ { name = " 차의과학대학교 생명과학부", url = "https://bs.cha.ac.kr/" } ]
 bio = ""
 email = "limpaul9_513@naver.com"
