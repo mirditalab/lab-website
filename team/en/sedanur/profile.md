@@ -1,6 +1,6 @@
 +++
 name = "Seda Nur Kabadayi"
-role = "Intern"
+role = "Master's Student"
 alumni = false
 organizations = [ { name = "SKKU Advanced Institute of Nano Technology", url = "https://saint.skku.edu/saint/index/do" } ]
 bio = ""
