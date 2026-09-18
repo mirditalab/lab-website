@@ -1,6 +1,6 @@
 +++
 name = "Seda Nur Kabadayi"
-role = "인턴"
+role = "석사과정생"
 alumni = false
 organizations = [ { name = "성균나노과학기술원", url = "https://saint.skku.edu/saint/index/do" } ] 
 bio = ""
